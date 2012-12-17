@@ -1,18 +1,19 @@
-package fr.music.overallbrothers;
+package fr.music.overallbrothers.activity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import fr.music.overallbrothers.R;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -39,6 +40,7 @@ public class MainActivity extends FragmentActivity implements
 				.setTabListener(this));
 		actionBar.addTab(actionBar.newTab().setText(R.string.title_section3)
 				.setTabListener(this));
+
 	}
 
 	@Override
@@ -69,6 +71,7 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, show the tab contents in the
 		// container view.
+
 		Fragment fragment = new DummySectionFragment();
 		Bundle args = new Bundle();
 		args.putInt(DummySectionFragment.ARG_SECTION_NUMBER,
@@ -100,6 +103,7 @@ public class MainActivity extends FragmentActivity implements
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
 		public DummySectionFragment() {
+
 		}
 
 		@Override
@@ -107,12 +111,24 @@ public class MainActivity extends FragmentActivity implements
 				Bundle savedInstanceState) {
 			// Create a new TextView and set its text to the fragment's section
 			// number argument value.
+			int resId = -1;
+			switch (getArguments().getInt(
+					DummySectionFragment.ARG_SECTION_NUMBER)) {
+			case 1:
+				resId = R.string.news_text;
+				break;
+			case 2:
+				resId = R.string.story_text;
+				break;
+			case 3:
+				resId = R.string.story_text;
+				break;
+			}
 			TextView textView = new TextView(getActivity());
 			textView.setGravity(Gravity.CENTER);
-			textView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			textView.setText(Html.fromHtml(getString(resId)));
+			textView.setTextColor(Color.WHITE);
 			return textView;
 		}
 	}
-
 }
