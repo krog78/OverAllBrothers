@@ -1,5 +1,15 @@
 package fr.music.overallbrothers.activity;
 
+import java.util.ArrayList;
+
+import org.json.JSONException;
+
+import com.teleca.jamendo.api.Album;
+import com.teleca.jamendo.api.Artist;
+import com.teleca.jamendo.api.JamendoGet2Api;
+import com.teleca.jamendo.api.WSError;
+import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -18,6 +28,11 @@ import fr.music.overallbrothers.R;
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
+	/**
+	 * Artist discography
+	 */
+	Album[] mAlbums = null; 
+	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * current tab position.
@@ -72,15 +87,19 @@ public class MainActivity extends FragmentActivity implements
 		// When the given tab is selected, show the tab contents in the
 		// container view.
 
-		Fragment fragment = new DummySectionFragment();
-		Bundle args = new Bundle();
-		args.putInt(DummySectionFragment.ARG_SECTION_NUMBER,
-				tab.getPosition() + 1);
-		fragment.setArguments(args);
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.container, fragment).commit();
+		if(tab.getPosition() != 2){
+			Fragment fragment = new DummySectionFragment();
+			Bundle args = new Bundle();
+			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER,
+					tab.getPosition() + 1);
+			fragment.setArguments(args);
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container, fragment).commit();
+		}else{
+			ArtistActivity.launch(this, "Over All Brothers", tab, getSupportFragmentManager());
+		}
 	}
-
+		
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
@@ -121,7 +140,6 @@ public class MainActivity extends FragmentActivity implements
 				resId = R.string.story_text;
 				break;
 			case 3:
-				ArtistActivity.launch(this.getActivity(), "Over All Brothers");
 				break;
 			}
 			TextView textView = new TextView(getActivity());
@@ -133,4 +151,5 @@ public class MainActivity extends FragmentActivity implements
 			return textView;
 		}
 	}
+	
 }

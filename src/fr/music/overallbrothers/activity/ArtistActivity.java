@@ -20,6 +20,27 @@ import java.util.ArrayList;
 
 import org.json.JSONException;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.gesture.GestureOverlayView;
+import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.Toast;
+
 import com.teleca.jamendo.adapter.AlbumGridAdapter;
 import com.teleca.jamendo.api.Album;
 import com.teleca.jamendo.api.Artist;
@@ -35,29 +56,13 @@ import com.teleca.jamendo.widget.ArtistBar;
 import fr.music.overallbrothers.JamendoApplication;
 import fr.music.overallbrothers.R;
 
-
-import android.app.Activity;
-import android.content.Intent;
-import android.gesture.GestureOverlayView;
-import android.net.Uri;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-
 /**
  * Artist View - discography, webpage & donate buttons
  * 
  * @author Lukasz Wisniewski
  */
-public class ArtistActivity extends Activity {
+public class ArtistActivity extends Fragment implements
+ActionBar.TabListener {
 
 	private ArtistBar mArtistBar;
 	private AlbumGridAdapter mAlbumGridAdapter;
@@ -75,24 +80,22 @@ public class ArtistActivity extends Activity {
 	 * @param c context from which Activity should be started
 	 * @param artistName Artist to be presented
 	 */
-	public static void launch(Activity c, String artistName){
-		new ArtistLoadingDialog(c,R.string.artist_loading, R.string.artist_fail).execute(artistName);
+	public static void launch(Activity c, String artistName, ActionBar.Tab tab, FragmentManager fm){
+		new ArtistLoadingDialog(c, R.string.artist_loading, R.string.artist_fail, tab, fm).execute(artistName);
 	}
-
-	/** Called when the activity is first created. */
+	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.artist);
-
-		mArtistBar = (ArtistBar)findViewById(R.id.ArtistBar);
-		mAlbumGridView = (GridView)findViewById(R.id.AlbumGridView);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.artist, container, false);
+        mArtistBar = (ArtistBar)view.findViewById(R.id.ArtistBar);
+		mAlbumGridView = (GridView)view.findViewById(R.id.AlbumGridView);
 
 		mArtistBar.setDescription(R.string.discography);
 
-		mArtist = (Artist) getIntent().getSerializableExtra("artist");
-		mAlbumGridAdapter = new AlbumGridAdapter(this);
+		mArtist = (Artist) this.getArguments().getSerializable("artiste");
+		mAlbumGridAdapter = new AlbumGridAdapter(this.getActivity());
 		mArtistBar.setArtist(mArtist);
 
 		loadAlbums();
@@ -100,21 +103,38 @@ public class ArtistActivity extends Activity {
 		mAlbumGridView.setOnItemClickListener(mOnItemClickListener);
 		mAlbumGridView.setOnItemLongClickListener(mOnItemLongClickListener);
 
-		mDonateButton = (Button)findViewById(R.id.DonateButton);
+		mDonateButton = (Button)view.findViewById(R.id.DonateButton);
 		mDonateButton.setOnClickListener(mDonateClick);
-		mWebpageButton = (Button)findViewById(R.id.WebpageButton);
+		mWebpageButton = (Button)view.findViewById(R.id.WebpageButton);
 		mWebpageButton.setOnClickListener(mWebpageClick);
 		
-		Toast.makeText(ArtistActivity.this, R.string.long_press_playlist, Toast.LENGTH_SHORT).show();
+		Toast.makeText(ArtistActivity.this.getActivity(), R.string.long_press_playlist, Toast.LENGTH_SHORT).show();
 
-		mGestureOverlayView = (GestureOverlayView) findViewById(R.id.gestures);
+		mGestureOverlayView = (GestureOverlayView) view.findViewById(R.id.gestures);
 		mGestureOverlayView.addOnGesturePerformedListener(JamendoApplication.getInstance().getPlayerGestureHandler());
+		
+		return view;
+    }
+	
+	@Override
+	public void onTabSelected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
 	}
 
 	@Override
-	protected void onResume() {
+	public void onTabUnselected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
+	}
+
+	@Override
+	public void onTabReselected(ActionBar.Tab tab,
+			FragmentTransaction fragmentTransaction) {
+	}
+	
+	@Override
+	public void onResume() {
 		super.onResume();
-		boolean gesturesEnabled = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("gestures", true);
+		boolean gesturesEnabled = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getBoolean("gestures", true);
 		mGestureOverlayView.setEnabled(gesturesEnabled);
 	}
 
@@ -122,7 +142,7 @@ public class ArtistActivity extends Activity {
 	private void loadAlbums() {
 //		JamendoGet2Api server = new JamendoGet2ApiImpl();
 //		Album[] albums = server.searchForAlbumsByArtist(artistName);
-		ArrayList<Album> albums = (ArrayList<Album>)getIntent().getSerializableExtra("albums");
+		ArrayList<Album> albums = (ArrayList<Album>)this.getArguments().getSerializable("albums");
 		mAlbumGridAdapter.setList(albums);
 		mAlbumGridView.setAdapter(mAlbumGridAdapter);
 	}
@@ -136,7 +156,7 @@ public class ArtistActivity extends Activity {
 		public void onItemClick(AdapterView<?> adapter, View view, int position,
 				long time) {
 			Album album = (Album)mAlbumGridAdapter.getItem(position);
-			AlbumActivity.launch(ArtistActivity.this, album);
+			AlbumActivity.launch(ArtistActivity.this.getActivity(), album);
 		}
 
 	};
@@ -151,7 +171,7 @@ public class ArtistActivity extends Activity {
 				int position, long time) {
 			Album album = (Album)mAlbumGridView.getAdapter().getItem(position);
 			new AddToPlaylistLoadingDialog(
-					ArtistActivity.this, 
+					ArtistActivity.this.getActivity(), 
 					R.string.adding_to_playlist, 
 					R.string.adding_to_playlist_fail
 					).execute(album);
@@ -223,7 +243,7 @@ public class ArtistActivity extends Activity {
 
 		@Override
 		public void doStuffWithResult(Track[] tracks) {
-			AddToPlaylistDialog dialog = new AddToPlaylistDialog(ArtistActivity.this);
+			AddToPlaylistDialog dialog = new AddToPlaylistDialog(ArtistActivity.this.getActivity());
 			mAlbum.setTracks(tracks);
 			dialog.setPlaylistAlbum(mAlbum);
 			dialog.show();
