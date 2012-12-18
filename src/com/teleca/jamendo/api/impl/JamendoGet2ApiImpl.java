@@ -27,7 +27,6 @@ import org.json.JSONException;
 
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.api.Album;
 import com.teleca.jamendo.api.Artist;
 import com.teleca.jamendo.api.JamendoGet2Api;
@@ -40,6 +39,8 @@ import com.teleca.jamendo.api.Review;
 import com.teleca.jamendo.api.Track;
 import com.teleca.jamendo.api.WSError;
 import com.teleca.jamendo.api.util.Caller;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 /**
  * Jamendo Get2 API implementation, Apache HTTP Client used for web requests

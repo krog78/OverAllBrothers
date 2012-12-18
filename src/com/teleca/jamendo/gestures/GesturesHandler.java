@@ -11,8 +11,8 @@ import android.gesture.Prediction;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
 
+import fr.music.overallbrothers.JamendoApplication;
 import fr.music.overallbrothers.R;
 
 

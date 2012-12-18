@@ -121,13 +121,15 @@ public class MainActivity extends FragmentActivity implements
 				resId = R.string.story_text;
 				break;
 			case 3:
-				resId = R.string.story_text;
+				ArtistActivity.launch(this.getActivity(), "Over All Brothers");
 				break;
 			}
 			TextView textView = new TextView(getActivity());
-			textView.setGravity(Gravity.CENTER);
-			textView.setText(Html.fromHtml(getString(resId)));
-			textView.setTextColor(Color.WHITE);
+			if(resId != -1){				
+				textView.setGravity(Gravity.CENTER);
+				textView.setText(Html.fromHtml(getString(resId)));
+				textView.setTextColor(Color.WHITE);
+			}
 			return textView;
 		}
 	}

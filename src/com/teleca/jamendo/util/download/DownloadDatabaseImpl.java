@@ -26,11 +26,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.api.PlaylistEntry;
 import com.teleca.jamendo.api.Track;
 import com.teleca.jamendo.db.AlbumDatabaseBuilder;
 import com.teleca.jamendo.db.TrackDatabaseBuilder;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 /**
  * Database implementation

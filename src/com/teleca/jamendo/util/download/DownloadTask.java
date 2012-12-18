@@ -28,12 +28,13 @@ import java.net.URL;
 
 import org.json.JSONException;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.api.JamendoGet2Api;
 import com.teleca.jamendo.api.PlaylistEntry;
 import com.teleca.jamendo.api.Track;
 import com.teleca.jamendo.api.WSError;
 import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

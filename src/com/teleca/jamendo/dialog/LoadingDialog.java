@@ -16,15 +16,16 @@
 
 package com.teleca.jamendo.dialog;
 
-import com.teleca.jamendo.activity.PlayerActivity;
-import com.teleca.jamendo.api.WSError;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.teleca.jamendo.api.WSError;
+
+import fr.music.overallbrothers.activity.PlayerActivity;
 
 /**
  * Wrapper around UserTask & ProgressDialog

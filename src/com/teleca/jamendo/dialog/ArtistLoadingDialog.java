@@ -23,12 +23,13 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.teleca.jamendo.activity.ArtistActivity;
 import com.teleca.jamendo.api.Album;
 import com.teleca.jamendo.api.Artist;
 import com.teleca.jamendo.api.JamendoGet2Api;
 import com.teleca.jamendo.api.WSError;
 import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
+
+import fr.music.overallbrothers.activity.ArtistActivity;
 
 /**
  * pre-ArtistActivity loading dialog

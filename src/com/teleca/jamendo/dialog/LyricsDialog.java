@@ -16,20 +16,19 @@
 
 package com.teleca.jamendo.dialog;
 
-import com.teleca.jamendo.api.JamendoGet2Api;
-import com.teleca.jamendo.api.Track;
-import com.teleca.jamendo.api.WSError;
-import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
-
-import fr.music.overallbrothers.R;
-
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.teleca.jamendo.api.JamendoGet2Api;
+import com.teleca.jamendo.api.Track;
+import com.teleca.jamendo.api.WSError;
+import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
+
+import fr.music.overallbrothers.R;
 
 /**
  * Dialog representing lyrics

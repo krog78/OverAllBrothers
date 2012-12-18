@@ -6,8 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import com.teleca.jamendo.activity.PlayerActivity;
 import com.teleca.jamendo.media.PlayerEngine;
+
+import fr.music.overallbrothers.activity.PlayerActivity;
 
 public class OnSeekToListenerImp implements OnTouchListener {
 

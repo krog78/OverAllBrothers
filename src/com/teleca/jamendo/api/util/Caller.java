@@ -34,8 +34,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.api.WSError;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 /**
  * @author Lukasz Wisniewski

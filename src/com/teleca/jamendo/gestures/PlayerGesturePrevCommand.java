@@ -2,8 +2,9 @@ package com.teleca.jamendo.gestures;
 
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.media.PlayerEngine;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 public class PlayerGesturePrevCommand implements GestureCommand {
 

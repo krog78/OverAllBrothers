@@ -24,10 +24,11 @@ import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.api.JamendoGet2Api;
 import com.teleca.jamendo.api.PlaylistEntry;
 import com.teleca.jamendo.service.DownloadService;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 /**
  * DownloadManager implementation. Using DownloadProviderDbImpl as DownloadJobs

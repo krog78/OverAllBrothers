@@ -23,14 +23,15 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.teleca.jamendo.JamendoApplication;
-import com.teleca.jamendo.activity.AlbumActivity;
 import com.teleca.jamendo.api.Album;
 import com.teleca.jamendo.api.JamendoGet2Api;
 import com.teleca.jamendo.api.Review;
 import com.teleca.jamendo.api.Track;
 import com.teleca.jamendo.api.WSError;
 import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
+
+import fr.music.overallbrothers.JamendoApplication;
+import fr.music.overallbrothers.activity.AlbumActivity;
 
 /**
  * pre-AlbumActivity loading (gets Tracks and Reviews)

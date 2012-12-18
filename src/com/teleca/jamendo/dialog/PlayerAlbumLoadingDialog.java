@@ -21,8 +21,6 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.teleca.jamendo.JamendoApplication;
-import com.teleca.jamendo.activity.PlayerActivity;
 import com.teleca.jamendo.api.Album;
 import com.teleca.jamendo.api.JamendoGet2Api;
 import com.teleca.jamendo.api.Playlist;
@@ -30,10 +28,13 @@ import com.teleca.jamendo.api.Track;
 import com.teleca.jamendo.api.WSError;
 import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
 
+import fr.music.overallbrothers.JamendoApplication;
+import fr.music.overallbrothers.activity.PlayerActivity;
+
 /**
  * pre-Player album loading dialog
  * 
- * @author Łukasz Wiśniewski
+ * @author niewski
  */
 public class PlayerAlbumLoadingDialog extends LoadingDialog<Album, Track[]>{
 	

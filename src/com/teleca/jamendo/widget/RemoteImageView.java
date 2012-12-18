@@ -41,8 +41,9 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.util.ImageCache;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 /**
  * ImageView extended class allowing easy downloading

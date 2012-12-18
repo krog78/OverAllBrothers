@@ -24,8 +24,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.teleca.jamendo.JamendoApplication;
-import com.teleca.jamendo.activity.DownloadActivity;
 import com.teleca.jamendo.api.JamendoGet2Api;
 import com.teleca.jamendo.api.PlaylistEntry;
 import com.teleca.jamendo.util.download.DownloadHelper;
@@ -34,7 +32,9 @@ import com.teleca.jamendo.util.download.DownloadJobListener;
 import com.teleca.jamendo.util.download.DownloadProvider;
 import com.teleca.jamendo.util.download.MediaScannerNotifier;
 
+import fr.music.overallbrothers.JamendoApplication;
 import fr.music.overallbrothers.R;
+import fr.music.overallbrothers.activity.DownloadActivity;
 
 // TODO sd card listener
 /**

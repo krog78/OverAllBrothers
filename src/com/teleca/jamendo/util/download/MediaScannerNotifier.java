@@ -16,8 +16,9 @@
 
 package com.teleca.jamendo.util.download;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.service.DownloadService;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;

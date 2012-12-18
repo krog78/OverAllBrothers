@@ -16,8 +16,9 @@
 
 package com.teleca.jamendo.util.download;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.api.PlaylistEntry;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 /**
  * Single remote file download task

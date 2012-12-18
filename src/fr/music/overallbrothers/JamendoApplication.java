@@ -1,4 +1,4 @@
-package com.teleca.jamendo;
+package fr.music.overallbrothers;
 
 import android.app.Application;
 import android.content.Intent;
@@ -55,6 +55,7 @@ public class JamendoApplication extends Application {
 		instance = this;
 		mImageCache = new ImageCache();
 		mDownloadManager = new DownloadManagerImpl(this);
+		mImageCache = new ImageCache();
 	}
 	
 	

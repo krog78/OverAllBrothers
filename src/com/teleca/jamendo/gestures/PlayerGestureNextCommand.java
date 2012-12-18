@@ -5,8 +5,9 @@ import java.util.HashMap;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.teleca.jamendo.JamendoApplication;
 import com.teleca.jamendo.media.PlayerEngine;
+
+import fr.music.overallbrothers.JamendoApplication;
 
 public class PlayerGestureNextCommand implements GestureCommand {
 
