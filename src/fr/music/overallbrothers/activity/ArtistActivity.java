@@ -51,7 +51,6 @@ import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
 import com.teleca.jamendo.dialog.AddToPlaylistDialog;
 import com.teleca.jamendo.dialog.ArtistLoadingDialog;
 import com.teleca.jamendo.dialog.LoadingDialog;
-import com.teleca.jamendo.widget.ArtistBar;
 
 import fr.music.overallbrothers.JamendoApplication;
 import fr.music.overallbrothers.R;
@@ -64,7 +63,6 @@ import fr.music.overallbrothers.R;
 public class ArtistActivity extends Fragment implements
 ActionBar.TabListener {
 
-	private ArtistBar mArtistBar;
 	private AlbumGridAdapter mAlbumGridAdapter;
 	private GridView mAlbumGridView;
 	private Button mDonateButton;
@@ -89,15 +87,11 @@ ActionBar.TabListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.artist, container, false);
-        mArtistBar = (ArtistBar)view.findViewById(R.id.ArtistBar);
-		mAlbumGridView = (GridView)view.findViewById(R.id.AlbumGridView);
-
-		mArtistBar.setDescription(R.string.discography);
-
+        mAlbumGridView = (GridView)view.findViewById(R.id.AlbumGridView);
+		
 		mArtist = (Artist) this.getArguments().getSerializable("artiste");
 		mAlbumGridAdapter = new AlbumGridAdapter(this.getActivity());
-		mArtistBar.setArtist(mArtist);
-
+		
 		loadAlbums();
 
 		mAlbumGridView.setOnItemClickListener(mOnItemClickListener);

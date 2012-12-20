@@ -48,7 +48,7 @@ public class AlbumAdapter extends ArrayListAdapter<Album> {
 
 		if (row==null) {
 			LayoutInflater inflater = mContext.getLayoutInflater();
-			row=inflater.inflate(R.layout.album_row, null);
+			row=inflater.inflate(R.layout.album_row, parent, false);
 
 			holder = new ViewHolder();
 			holder.image = (RemoteImageView)row.findViewById(R.id.AlbumRowImageView);

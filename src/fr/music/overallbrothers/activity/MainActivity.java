@@ -1,15 +1,5 @@
 package fr.music.overallbrothers.activity;
 
-import java.util.ArrayList;
-
-import org.json.JSONException;
-
-import com.teleca.jamendo.api.Album;
-import com.teleca.jamendo.api.Artist;
-import com.teleca.jamendo.api.JamendoGet2Api;
-import com.teleca.jamendo.api.WSError;
-import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -23,6 +13,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.teleca.jamendo.api.Album;
+
 import fr.music.overallbrothers.R;
 
 public class MainActivity extends FragmentActivity implements
@@ -151,5 +144,7 @@ public class MainActivity extends FragmentActivity implements
 			return textView;
 		}
 	}
+	
+	
 	
 }
