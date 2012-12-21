@@ -16,14 +16,15 @@
 
 package com.teleca.jamendo.adapter;
 
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.teleca.jamendo.widget.RemoteImageView;
 
 import fr.music.overallbrothers.R;
-
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.GridView;
 
 public class AlbumGridAdapter extends AlbumAdapter {
 	
@@ -36,20 +37,29 @@ public class AlbumGridAdapter extends AlbumAdapter {
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		 RemoteImageView i;
+		View row=convertView;
 
-         if (convertView == null) {
-             i = new RemoteImageView(mContext);
-             i.setScaleType(RemoteImageView.ScaleType.FIT_CENTER);
-             i.setLayoutParams(new GridView.LayoutParams(mAlbumSize, mAlbumSize));
-         } else {
-             i = (RemoteImageView) convertView;
-         }
+		ViewHolder holder;
 
-         i.setDefaultImage(R.drawable.no_cd_125);
-         i.setImageUrl(mList.get(position).getImage());
+		if (row==null) {
+			LayoutInflater inflater = mContext.getLayoutInflater();
+			row=inflater.inflate(R.layout.album_cell, parent, false);
 
-         return i;
+			holder = new ViewHolder();
+			holder.image = (RemoteImageView)row.findViewById(R.id.AlbumRowImageView);
+			holder.albumText = (TextView)row.findViewById(R.id.AlbumRowAlbumTextView);
+			
+			row.setTag(holder);
+		}
+		else{
+			holder = (ViewHolder) row.getTag();
+		}
+		
+		holder.image.setDefaultImage(R.drawable.no_cd);
+		holder.image.setImageUrl(mList.get(position).getImage(),position, getListView());
+		holder.albumText.setText(mList.get(position).getName());
+		
+		return row;
 	}
 	
 	/**
@@ -60,5 +70,6 @@ public class AlbumGridAdapter extends AlbumAdapter {
 	 */
 	static class ViewHolder {
 		RemoteImageView image;
+		TextView albumText;
 	}
 }

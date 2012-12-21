@@ -170,17 +170,18 @@ public final class R {
         public static final int add_to_playlist=0x7f030001;
         public static final int album=0x7f030002;
         public static final int album_bar=0x7f030003;
-        public static final int album_row=0x7f030004;
-        public static final int artist=0x7f030005;
-        public static final int download=0x7f030006;
-        public static final int download_row=0x7f030007;
-        public static final int intent_distributor=0x7f030008;
-        public static final int lyrics=0x7f030009;
-        public static final int player=0x7f03000a;
-        public static final int playlist_row=0x7f03000b;
-        public static final int progress_bar=0x7f03000c;
-        public static final int review_row=0x7f03000d;
-        public static final int track_row=0x7f03000e;
+        public static final int album_cell=0x7f030004;
+        public static final int album_row=0x7f030005;
+        public static final int artist=0x7f030006;
+        public static final int download=0x7f030007;
+        public static final int download_row=0x7f030008;
+        public static final int intent_distributor=0x7f030009;
+        public static final int lyrics=0x7f03000a;
+        public static final int player=0x7f03000b;
+        public static final int playlist_row=0x7f03000c;
+        public static final int progress_bar=0x7f03000d;
+        public static final int review_row=0x7f03000e;
+        public static final int track_row=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_main=0x7f0a0000;

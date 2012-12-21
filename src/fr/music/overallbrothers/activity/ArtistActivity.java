@@ -91,7 +91,7 @@ ActionBar.TabListener {
 		
 		mArtist = (Artist) this.getArguments().getSerializable("artiste");
 		mAlbumGridAdapter = new AlbumGridAdapter(this.getActivity());
-		
+				
 		loadAlbums();
 
 		mAlbumGridView.setOnItemClickListener(mOnItemClickListener);
@@ -150,7 +150,7 @@ ActionBar.TabListener {
 		public void onItemClick(AdapterView<?> adapter, View view, int position,
 				long time) {
 			Album album = (Album)mAlbumGridAdapter.getItem(position);
-			AlbumActivity.launch(ArtistActivity.this.getActivity(), album);
+			AlbumActivity.launch(ArtistActivity.this.getActivity(), album, getFragmentManager());
 		}
 
 	};

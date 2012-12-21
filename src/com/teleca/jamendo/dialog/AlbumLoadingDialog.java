@@ -21,7 +21,9 @@ import java.util.ArrayList;
 import org.json.JSONException;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import com.teleca.jamendo.api.Album;
 import com.teleca.jamendo.api.JamendoGet2Api;
@@ -31,6 +33,7 @@ import com.teleca.jamendo.api.WSError;
 import com.teleca.jamendo.api.impl.JamendoGet2ApiImpl;
 
 import fr.music.overallbrothers.JamendoApplication;
+import fr.music.overallbrothers.R;
 import fr.music.overallbrothers.activity.AlbumActivity;
 
 /**
@@ -45,8 +48,10 @@ public class AlbumLoadingDialog extends LoadingDialog<Object, Integer>{
 	Album mAlbum;
 	int mSelectedReviewId = -1;
 	
-	public AlbumLoadingDialog(Activity activity, int loadingMsg, int failMsg) {
-		super(activity, loadingMsg, failMsg);
+	FragmentManager fragmentManager;
+	public AlbumLoadingDialog(Activity activity, int loadingMsg, int failMsg, FragmentManager fragmentManagerCurrent) {
+		super(activity, loadingMsg, failMsg);		
+		fragmentManager = fragmentManagerCurrent;
 	}
 
 	@Override
@@ -75,13 +80,15 @@ public class AlbumLoadingDialog extends LoadingDialog<Object, Integer>{
 
 		for(Review review : mReviews)
 			reviews.add(review);
+		Fragment fragment = new AlbumActivity();
+		Bundle args = new Bundle();
 		
-		Intent intent = new Intent(mActivity, AlbumActivity.class);
-		intent.putExtra("album", mAlbum);
-		intent.putExtra("reviews", reviews);
-		intent.putExtra("selectedReviewId", mSelectedReviewId);
-		mActivity.startActivity(intent);
-		
+		args.putSerializable("album", mAlbum);
+		args.putSerializable("reviews", reviews);
+		args.putSerializable("selectedReviewId", mSelectedReviewId);
+		fragment.setArguments(args);
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, fragment).commit();
 	}
 
 	private void loadReviews(Album album) throws JSONException, WSError {
